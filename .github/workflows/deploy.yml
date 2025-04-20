@@ -1,7 +1,7 @@
 name: Relase on pocketbase/release
 on:
   schedule:
-    - cron: "0 12 * * *"
+    - cron: "0 0 * * 1"
   workflow_dispatch:
 
 jobs:
@@ -35,7 +35,7 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: |
-            spectado/pocketbase
+            smilingxinyi/pocketbase
           tags: |
             type=semver,pattern={{version}},value=${{ steps.pocketbase.outputs.version }}
 

@@ -27,7 +27,7 @@ jobs:
       - name: Login to docker-hub
         uses: docker/login-action@v2
         with:
-          username: spectado
+          username: smilingxinyi
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Docker meta

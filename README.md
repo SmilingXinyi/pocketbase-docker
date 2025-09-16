@@ -1,5 +1,6 @@
 # Docker version of PocketBase - backend for your next SasS and Mobile App
 
+[![Relase on pocketbase/release](https://github.com/SmilingXinyi/pocketbase-docker/actions/workflows/deploy.yml/badge.svg?branch=main)](https://github.com/SmilingXinyi/pocketbase-docker/actions/workflows/deploy.yml)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/pocketbase/pocketbase?logo=github&logoColor=%23ffffff&style=for-the-badge)
 ![Docker Image Version (latest by date)](https://img.shields.io/docker/v/spectado/pocketbase?logo=docker&logoColor=%23ffffff&style=for-the-badge)
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/spectado/pocketbase/latest?logo=docker&logoColor=%23ffffff&style=for-the-badge)

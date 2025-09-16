@@ -1,0 +1,40 @@
+name: keepalive
+
+on:
+  schedule:
+    # 每月 1 日 00:00 UTC 运行（东京 09:00）
+    - cron: "0 0 1 * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write  # 需要向仓库推送变更
+
+concurrency:
+  group: keepalive
+  cancel-in-progress: false
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Update heartbeat file
+        run: |
+          mkdir -p .github
+          echo "last_heartbeat=$(date -u +'%Y-%m-%dT%H:%M:%SZ')" > .github/.keepalive
+
+      - name: Commit & push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet && git diff --staged --quiet; then
+            echo "No changes to commit."
+          else
+            git add .github/.keepalive
+            git commit -m "chore(keepalive): heartbeat [skip ci] [no ci]"
+            git push
+          fi

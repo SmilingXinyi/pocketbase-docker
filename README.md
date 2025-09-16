@@ -1,17 +1,17 @@
 # Docker version of PocketBase - backend for your next SasS and Mobile App
 
 [![Relase on pocketbase/release](https://github.com/SmilingXinyi/pocketbase-docker/actions/workflows/deploy.yml/badge.svg?branch=main)](https://github.com/SmilingXinyi/pocketbase-docker/actions/workflows/deploy.yml)
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/pocketbase/pocketbase?logo=github&logoColor=%23ffffff&style=for-the-badge)
-![Docker Image Version (latest by date)](https://img.shields.io/docker/v/spectado/pocketbase?logo=docker&logoColor=%23ffffff&style=for-the-badge)
-![Docker Image Size (tag)](https://img.shields.io/docker/image-size/spectado/pocketbase/latest?logo=docker&logoColor=%23ffffff&style=for-the-badge)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/pocketbase/pocketbase?logo=github&logoColor=%23ffffff&style=flat)
+![Docker Image Version (latest by date)](https://img.shields.io/docker/v/smilingxinyi/pocketbase?logo=docker&logoColor=%23ffffff&style=flat)
+![Docker Image Size (tag)](https://img.shields.io/docker/image-size/smilingxinyi/pocketbase/latest?logo=docker&logoColor=%23ffffff&style=flat)
 
 ## Supported Architectures
 
-![Docker AMD64](https://img.shields.io/badge/amd64-grey?logo=&logoColor=%23ffffff&style=for-the-badge)
-![Docker ARM64](https://img.shields.io/badge/arm64-grey?logo=&logoColor=%23ffffff&style=for-the-badge)
-![Docker arm v7](https://img.shields.io/badge/arm%20v7-grey?logo=&logoColor=%23ffffff&style=for-the-badge)
+![Docker AMD64](https://img.shields.io/badge/amd64-grey?logo=&logoColor=%23ffffff&style=flat)
+![Docker ARM64](https://img.shields.io/badge/arm64-grey?logo=&logoColor=%23ffffff&style=flat)
+![Docker arm v7](https://img.shields.io/badge/arm%20v7-grey?logo=&logoColor=%23ffffff&style=flat)
 
-Pulling `spectado/pocketbase:latest` will retrieve the correct image for your arch.
+Pulling `smilingxinyi/pocketbase:latest` will retrieve the correct image for your arch.
 
 ## Application Setup
 
@@ -57,7 +57,7 @@ This docker image is a build of [pocketbase.io - Open Source backend for your ne
 version: "3.7"
 services:
   pocketbase:
-    image: spectado/pocketbase:latest
+    image: smilingxinyi/pocketbase:latest
     container_name: pocketbase
     restart: unless-stopped
     ports:

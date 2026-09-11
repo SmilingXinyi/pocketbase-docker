@@ -2,12 +2,13 @@ name: Keepalive
 
 on:
   schedule:
-    # 每月 1 日 00:00 UTC 运行（东京 09:00）
-    - cron: "0 0 1 * *"
+    # Twice a month. Public repos disable scheduled workflows after 60 days
+    # without repository activity (pushes/PRs/issues), so this must commit.
+    - cron: "0 0 1,15 * *"
   workflow_dispatch: {}
 
 permissions:
-  contents: write  # 需要向仓库推送变更
+  contents: write  # push the heartbeat commit
 
 concurrency:
   group: keepalive
@@ -20,21 +21,23 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 1
 
-      - name: Update heartbeat file
+      - name: Update heartbeat and push
         run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
           mkdir -p .github
           echo "last_heartbeat=$(date -u +'%Y-%m-%dT%H:%M:%SZ')" > .github/.keepalive
 
-      - name: Commit & push if changed
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if git diff --quiet && git diff --staged --quiet; then
+          # Stage first: an untracked file does not show up in `git diff`.
+          git add .github/.keepalive
+          if git diff --staged --quiet; then
             echo "No changes to commit."
-          else
-            git add .github/.keepalive
-            git commit -m "chore(keepalive): heartbeat [skip ci] [no ci]"
-            git push
+            exit 0
           fi
+
+          git commit -m "chore(keepalive): heartbeat [skip ci]"
+          git push
